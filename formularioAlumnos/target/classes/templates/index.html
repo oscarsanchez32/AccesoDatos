@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Inicio</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="display-4">¡Hola, mundo!</h1>
+        <h2>Tabla de alumnos</h2>
+    </div>
+
+    <div class="container">
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Id</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Edad</th>
+                    <th>DNI</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="alumno : ${alumnos}">
+                    <td th:text="${alumno.id}"></td>
+                    <td th:text="${alumno.nombre}"></td>
+                    <td th:text="${alumno.apellidos}"></td>
+                    <td th:text="${alumno.edad}"></td>
+                    <td th:text="${alumno.dni}"></td>
+                    <td>
+                        <form action="/eliminar-alumno" method="post">
+                        <input type="hidden" name="id" th:value="${alumno.id}">
+                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                        </form>
+                    </td>
+                    <td>
+                    <a th:href="@{/editar/(id=${alumno.id})}" class="btn btn-primary">Editar</a>
+                    </td>
+                    </tr>
+            </tbody>
+        </table>
+        <br>
+        <div class="row">
+            <div class="col-sm-6">
+                <div sd:pagination-summary="">info</div>
+            </div>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <div sd:pagination-sumary=""></div>
+                
+           
+                
+                
+                <ul class="pagination" sd:pagination="pager">
+                    <li class="page-item disabled"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+                    <li class="page-item active"><a class="page-link" href="#">1 <span class="sr-only">(current)</span></a></li>
+                </ul>
+                   Mostrando <span sd:page-size-selector="javascript"> registros </span> 
+            </div>
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        
+        <a class="btn btn-primary" href="http://localhost:8080/nuevoAlumno">Crear un nuevo alumno</a>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
